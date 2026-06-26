@@ -48,10 +48,9 @@ public class InventoryMoveEvent implements Listener {
 
         ItemStack clickedItem = event.getCurrentItem();
 
-        /*
         if(player.getGameMode() == GameMode.CREATIVE || player.hasPermission("powergems.movegems")) {
             return;
-        }*/
+        }
 
         boolean isMovingToOtherInventory = event.getClickedInventory() != player.getInventory();
 

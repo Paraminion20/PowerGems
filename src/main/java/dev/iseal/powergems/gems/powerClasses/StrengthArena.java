@@ -62,6 +62,7 @@ public class StrengthArena implements Listener {
 
                 Bukkit.getOnlinePlayers().stream()
                         .filter(candidate -> !candidate.equals(player))
+                        .filter(candidate -> candidate.getWorld().equals(startingLocation.getWorld()))
                         .filter(candidate -> candidate.getLocation().distanceSquared(startingLocation) < RADIUS_SQUARED)
                         .forEach( candidate -> {
                             candidate.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 15, (level - 1 )/2));
