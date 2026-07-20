@@ -19,7 +19,7 @@ public class DamageListener implements Listener {
 
     private final GemManager gm = SingletonManager.getInstance().gemManager;
     private final NamespacedKeyManager nkm = SingletonManager.getInstance().namespacedKeyManager;
-    private final ArrayList<String> allowedGems = new ArrayList<>(Arrays.asList("Air", "Lightning"));
+    private final ArrayList<String> allowedGems = new ArrayList<>(Arrays.asList("Air", "Lightning", "Water"));
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDamage(EntityDamageEvent e) {
