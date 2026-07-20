@@ -40,7 +40,7 @@ public class StrengthGem extends Gem {
     @Override
     protected void leftClick(Player plr, int level) {
         double distance = 10;
-        double power = 2 + ((double) level / 2);
+        double power = 1 + ((double) level / 4);
         Location playerLocation = plr.getLocation();
         List<Entity> nearbyEntities = plr.getNearbyEntities(distance, distance, distance);
         for (Entity entity : nearbyEntities) {
