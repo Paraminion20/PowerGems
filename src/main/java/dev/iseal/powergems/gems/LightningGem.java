@@ -37,11 +37,14 @@ public class LightningGem extends Gem {
         Location targetLocation = possibleTarget.getLocation();
         World plrWorld = plr.getWorld();
         plrWorld.strikeLightning(targetLocation);
-        for (Entity e : plrWorld.getNearbyEntities(targetLocation, 5, 5, 5)) {
-            if (e instanceof LivingEntity) {
+        for (Entity e : plrWorld.getNearbyEntities(targetLocation, 8, 8, 8)) {
+            if (e instanceof LivingEntity livingEntity) {
                 plrWorld.strikeLightning(e.getLocation());
+                livingEntity.damage(4.0 + level, plr);
             }
         }
+
+        plr.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 600, 0));
     }
 
     @Override
@@ -52,7 +55,7 @@ public class LightningGem extends Gem {
         try {
             world.spawnParticle(Particle.FLASH, playerLocation.add(0, 1, 0), 1, 0, 0, 0, Color.YELLOW);
         } catch (IllegalArgumentException e) {
-            // those args are illegal in some versions
+
             world.spawnParticle(Particle.FLASH, playerLocation.add(0, 1, 0), 1);
         }
     }
