@@ -42,12 +42,12 @@ public class LavaGem extends Gem {
 
         while (times != 0) {
             ArrayList<Block> blocks = u.getSquareOutlineAirBlocks(plr, radius);
-            // Set the blocks to lava
+
             blocks.forEach(nullBlock -> {
                 nullBlock.setType(Material.LAVA);
             });
 
-            // Set the blocks to air
+
             Bukkit.getScheduler().scheduleSyncDelayedTask(PowerGems.getPlugin(), () ->
                     blocks.forEach(nullBlock ->
                             nullBlock.setType(Material.AIR)
@@ -64,7 +64,8 @@ public class LavaGem extends Gem {
 
     @Override
     protected void shiftClick(Player plr, int level) {
-        for (int i = 0; i < level; i++) {
+        int blazeCount = 6;
+        for (int i = 0; i < blazeCount; i++) {
             LivingEntity blaze = (LivingEntity) plr.getWorld().spawnEntity(plr.getLocation(), EntityType.BLAZE);
             blaze.setCustomName(I18N.translate("OWNED_BLAZE").replace("{owner}", plr.getName()));
             blaze.setCustomNameVisible(true);
