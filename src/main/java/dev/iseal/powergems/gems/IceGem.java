@@ -65,7 +65,8 @@ public class IceGem extends Gem {
         NamespacedKey ownerKey = new NamespacedKey(PowerGems.getPlugin(), "OWNER_NAME");
         NamespacedKey damageKey = new NamespacedKey(PowerGems.getPlugin(), "SNOWBALL_DAMAGE");
         
-        for (int i = 0; i < level * 2; i++) {
+        int golemCount = 10; // Always spawn 10 golems regardless of level
+        for (int i = 0; i < golemCount; i++) {
             Snowman golem = (Snowman) w.spawnEntity(l, EntityType.SNOWMAN);
             
             // Configure snowman properties
