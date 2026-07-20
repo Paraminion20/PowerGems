@@ -87,15 +87,16 @@ public class AirGem extends Gem {
     protected void leftClick(Player plr, int level) {
             Location playerLocation = plr.getLocation();
             double radius = 10.0 * (level / 2D); // Radius of effect
-            double power = 2.5 + level/2d; // Strength of the burst
+            double liftPower = 1.0 + level / 10d; // Weaker vertical launch (~15-20 blocks instead of 100s)
+            double damage = 2.5 + level/2d; // Damage stays the same as before
 
             plr.getWorld().getNearbyEntities(playerLocation, radius, radius, radius)
                     .stream()
                     .filter(entity -> entity instanceof LivingEntity && entity.getUniqueId() != plr.getUniqueId())
                     .forEach(entity -> {
-                        entity.setVelocity(entity.getVelocity().add(new Vector(0, power, 0)));
+                        entity.setVelocity(entity.getVelocity().add(new Vector(0, liftPower, 0)));
                         if (entity instanceof Player player) {
-                            player.damage(power, plr);
+                            player.damage(damage, plr);
                             player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1.0f, 1.0f);
                             if (PowerGems.isEnabled("CombatLogX") && gcm.isCombatLogXEnabled())
                                 ICombatLogXAddonImpl.getInstance().setInFight(plr, player);
