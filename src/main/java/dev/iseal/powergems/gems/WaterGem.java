@@ -43,7 +43,7 @@ public class WaterGem extends Gem {
         Location loc = plr.getLocation();
         loc.setY(loc.getY() - 1);
         int halfRadius = level * 2;
-        // Itinerate in a square around the location
+
         for (int x = -halfRadius; x <= halfRadius; x++) {
             for (int z = -halfRadius; z <= halfRadius; z++) {
                 Location pos = new Location(loc.getWorld(), loc.getX() + x, loc.getY(), loc.getZ() + z);
@@ -56,20 +56,22 @@ public class WaterGem extends Gem {
                 block.applyBoneMeal(BlockFace.UP);
             }
         }
+
+        plr.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 1200, 0));
     }
 
     @Override
     protected void shiftClick(Player plr, int level) {
-        //Disable shift click in the nether
+
         if(plr.getWorld().getEnvironment() == World.Environment.NETHER) {
             plr.sendMessage(I18N.translate("WATER_GEM_SHIFT_DISABLED_NETHER"));
             return;
         }
-        // Get the player's position
+
         Location playerPos = plr.getLocation();
         int halfRadius = 3 + level / 2;
 
-        // Calculate the start and end positions of the cube
+
         int startX = playerPos.getBlockX() - halfRadius;
         int startY = playerPos.getBlockY();
         int startZ = playerPos.getBlockZ() - halfRadius;
@@ -77,11 +79,11 @@ public class WaterGem extends Gem {
         int endY = playerPos.getBlockY() + halfRadius*2;
         int endZ = playerPos.getBlockZ() + halfRadius;
 
-        // Iterate over the cube
+
         for (int x = startX; x <= endX; x++) {
             for (int y = startY; y <= endY; y++) {
                 for (int z = startZ; z <= endZ; z++) {
-                    // Set the block to water
+
                     Location pos = new Location(plr.getWorld(), x, y, z);
                     Block block = pos.getBlock();
                     if (!block.isEmpty())
@@ -129,4 +131,3 @@ public class WaterGem extends Gem {
         return null;
     }
 }
-
